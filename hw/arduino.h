@@ -19,21 +19,21 @@
 #define SPI_CLK_RATE 250000
 
 // Connection to CC1101 GDO2
-#define GDO2_CLK_PIN         2
-#define GDO2_CLK_INT         INT0
-#define GDO2_CLK_INTVECT     INT0_vect
-#define GDO2_CLK_INT_ISCn0   ISC00
-#define GDO2_CLK_INT_ISCn1   ISC01
+#define GDO2_CLK_PIN         3
+#define GDO2_CLK_INT         INT1
+#define GDO2_CLK_INTVECT     INT1_vect
+#define GDO2_CLK_INT_ISCn0   ISC10
+#define GDO2_CLK_INT_ISCn1   ISC11
 
 // Connection to CC1101 GDO0
-#define GDO0_INT         INT1
-#define GDO0_INTVECT     INT1_vect
-#define GDO0_INT_ISCn0   ISC10
-#define GDO0_INT_ISCn1   ISC11
+#define GDO0_INT         INT0
+#define GDO0_INTVECT     INT0_vect
+#define GDO0_INT_ISCn0   ISC00
+#define GDO0_INT_ISCn1   ISC01
 
 #define GDO0_DATA_DDR     DDRD
 #define GDO0_DATA_PORT    PORTD
-#define GDO0_DATA_PIN     3
+#define GDO0_DATA_PIN     2
 #define GDO0_DATA_IN      PIND
 
 // Software interrupt
