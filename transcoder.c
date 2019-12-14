@@ -65,8 +65,22 @@ void transcoder_accept_inbound_byte(uint8_t b, uint8_t status) {
   static uint8_t flags;
   static char str[12];
 
+  if (state == S_ERROR) {
+    if (status == ERR_NONE) {
+      write_str("\r\n");
+      state = S_HEADER; 
+    }
+    else if (status == 0) { // ignore further errors
+      // Report rest of packet for diagnostic purposes
+      sprintf(str, "%02hX", b);
+      write_str(str);
+    }
+    return;
+  }
+  
   if (status != 0) {
     if (state != S_COMPLETE || status != ERR_NONE) {
+      state = S_ERROR;
       switch (status) {
         case ERR_BAD_START_BIT:
           write_str("\x09*ERR_BAD_START_BIT*");
@@ -87,6 +101,7 @@ void transcoder_accept_inbound_byte(uint8_t b, uint8_t status) {
           write_str("\x09*ERR_UNKNOWN*");
           break;
       }
+      return;
     }
     write_str("\r\n");
     state = S_HEADER;
