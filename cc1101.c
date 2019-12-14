@@ -363,6 +363,12 @@ static void read_fifo(uint8_t readAll)
         frameLen = bs_status;
         cc_write( 0x06, frameLen & 0xFF );
       }
+    } else if( bs_status > BS_END_OF_PACKET ) {
+      if( writePktLen ) {  // capture a few more bytes for diagnostics
+        cc_write( 0x06, ( rxBytes+4 ) & 0xFF );
+        cc_write( 0x08, 0x00 );
+        writePktLen = 0;
+      }
     }
 
     if( frameLen != 0xFFFF ) {
