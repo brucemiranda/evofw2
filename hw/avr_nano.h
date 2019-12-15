@@ -2,8 +2,8 @@
 #  error "Include config.h instead of this file"
 #endif
 
-#ifndef _HW_NANO_V3_H_
-#define _HW_NANO_V3_H_
+#ifndef _HW_ARDUINO_H_
+#define _HW_ARDUINO_H_
 
 #include <avr/io.h>
 
