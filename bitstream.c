@@ -528,6 +528,11 @@ uint16_t bs_accept_octet( uint8_t bits ) {
   return synchronised;
 }
 
+void bs_rx_rssi( uint8_t rssi)
+{
+  transcoder_accept_inbound_byte(rssi, TC_RX_RSSI);
+}
+
 /****************************************************************************************
 * TX byte processing
 *
@@ -750,4 +755,3 @@ void bs_init(void)
   rb_reset( &tx_msg );
   manchester_init();
 }
-
