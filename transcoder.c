@@ -69,7 +69,13 @@ void transcoder_accept_inbound_byte(uint8_t b, uint8_t status) {
 
   if( status==TC_RX_RSSI )
   {
-    rssi = b;
+    // RSSI calculation from DN505 application note; negated to match as closely
+    // as possible to the HGI80 output
+    if (b >= 128) {
+        rssi = -(((int16_t)(b - 256) / 2) - 74);
+    } else {
+        rssi = -((b / 2) - 74);
+    }
     return;
   }
   
